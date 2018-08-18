@@ -1,1 +1,1 @@
-# Giphy_Homework
+# TriviaGame
