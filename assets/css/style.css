@@ -24,7 +24,7 @@ body {
 
 .intro {
 	display: block;
-	background-color: #271416;
+	background-color: #1b1427;
 	color: white;
 	font-family: 'Oxygen', sans-serif;
 	font-weight: 300;
@@ -39,7 +39,7 @@ body {
 
 .input-label {
 	font-size: 20px;
-	color: black;
+	color: white;
 }
 
 .character-btn {
@@ -57,7 +57,7 @@ body {
 
 .rating-text {
 	font-size: 20px;
-	color: black;
+	color: whitesmoke;
 	font-weight: bold;
 }
 
