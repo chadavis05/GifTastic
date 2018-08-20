@@ -1,28 +1,124 @@
-$("#cat-button").on("click", function() {
+$(document).ready(function() {
 
-    // Storing our giphy API URL for a random cat image
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats";
-
-    // Perfoming an AJAX GET request to our queryURL
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-
-    // After the data from the AJAX request comes back
-      .then(function(response) {
-
-      // Saving the image_original_url property
-        var imageUrl = response.data.image_original_url;
-
-        // Creating and storing an image tag
-        var catImage = $("<img>");
-
-        // Setting the catImage src attribute to imageUrl
-        catImage.attr("src", imageUrl);
-        catImage.attr("alt", "cat image");
-
-        // Prepending the catImage to the images div
-        $("#images").prepend(catImage);
-      });
-  });
+  var topics = ["Captain Kirk", "Spock", "Bones", "Uhura", "Enterprise", "Captain Picard"]
+  const theme = new Audio("assets/got-theme-song.mp3");
+  var musicPlaying = false;
+  var results;
+  
+    // MUSIC FUNCTION 
+  
+    $("#title-button").on("click", function() {
+      if(musicPlaying == false){
+            theme.play();
+            musicPlaying = true;
+         }else {
+            theme.pause();
+            musicPlaying = false;
+        }
+    });
+  
+    // MAKE BUTTONS	AND ADD ONCLICK FUNCTION
+  
+    function makeButtons() {
+  
+      $("#got-buttons").empty();
+  
+      for (i = 0; i < topics.length; i++) {
+        
+        var b = $("<button>");
+  
+        b.addClass("character-btn");
+        b.attr("data-name", topics[i]);
+        b.text(topics[i]);
+  
+        $("#got-buttons").append(b);
+      };
+    };
+  
+    $("#add-character").on("click", function(event) {
+  
+      event.preventDefault();
+  
+      var character = $("#got-input").val().trim();
+  
+      topics.push(character);
+      $("#got-input").val("");
+  
+      makeButtons();
+  
+      console.log(topics);
+    });
+  
+    makeButtons();
+  
+    //FUNCTION FOR GRABBING GIPHY API CONTENT
+  
+      function dataPull() {
+       var api_key = "&api_key=tOwJHu6FDTpUswVtjBpnDchAfC4G6f6s"
+       var characterName = $(this).attr("data-name");
+       var characterStr = characterName.split(" ").join("+");
+       var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + characterStr + api_key;
+  
+       $.ajax({
+          url: giphyURL,
+          method: "GET"
+        }).done(function(response) {
+          
+          console.log(giphyURL);
+          console.log(response);
+  
+          results = response.data;
+  
+          $("#gifs").empty();
+          for (var i = 0; i < results.length; i++) {
+            
+            var characterDiv = $("<div>");
+            var para = $("<p class='rating'>").text("Rating: " + results[i].rating);
+            var characterImage = $("<img>");
+  
+            para.addClass("rating-text")
+            
+            characterImage.addClass("image-gifs")
+            characterImage.attr("src", results[i].images.fixed_height_still.url);
+            characterImage.attr("data-state", "still");
+            characterImage.attr("data-position", i);
+  
+            characterDiv.append(para);
+            characterDiv.append(characterImage);
+            characterDiv.addClass("individual-gifs")
+  
+            $("#gifs").prepend(characterDiv);
+  
+          }; //ENDS FOR LOOP
+        }); // ENDS AJAX FUNCTION
+    
+    };
+  
+    // Use document on click function to apply function for elements AFTER the page has loaded
+  
+    $(document).on("click", ".character-btn", dataPull);
+  
+    // ANIMATE GIFS
+  
+      function gifAnimation() {
+        var state = $(this).attr("data-state");
+        var position = $(this).attr("data-position"); //will return a string
+        position = parseInt(position); //string to integer
+  
+        console.log(results[position].images.fixed_height.url);
+        console.log(position);
+  
+        if (state === "still") {
+          console.log("we're here");
+          $(this).attr("src", results[position].images.fixed_height.url);
+          $(this).attr("data-state", "animate");
+        } else {
+          $(this).attr("src", results[position].images.fixed_height_still.url);
+          $(this).attr("data-state", "still");
+        }
+      };
+  
+    $(document).on("click", ".image-gifs", gifAnimation);
+  
+  }); //document.ready 
+  

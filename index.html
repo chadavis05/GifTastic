@@ -1,29 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>The Magical Cat Button</title>
-  <!-- Reset CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Link to CSS -->
-<!--<link rel="stylesheet" type="text/css" href="assets/css/style.css">-->
+	<title>GifTastic Star Trek</title>
+
+	<!-- Bootstrap Links -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- CSS Links -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
+	<!-- GOOGLE FONT LINKS -->
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700" rel="stylesheet">
+
 </head>
-
 <body>
-  <button id="cat-button">magical cat button</button>
-  <div id="images">
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<div class="jumbotron">
+	  <h1 id="title">GifTastic Star Trek Website!!!</h1>
+	  <!--<p><a class="btn btn-primary btn-lg" id="title-button" href="#" role="button">The Full Experience</a></p>-->
+	</div>
+	
+	<p class="intro">Click on a conveniently already made button or input your own with your favorite character!</p>
+	
+	<div class="container">
+
+	<div id="got-buttons"></div>
+
+	<br />
+
+	<div class="row gif-row">
+	  	<div class="col-md-10">
+	  		<div id="gifs"></div>
+	  	</div>
+		<div class="col-md-2">
+		  	<form id="got-character">	
+
+	      		<label for="got-input" class="input-label">MORE OF: </label>
+	      		<input type="text" id="got-input"><br>
+
+	      		<input id="add-character" type="submit" value="Submit">
+	    	</form>
+	  	</div>
+	</div>
+	
+	</div>
+
+	<footer id="sticky"><img class="throne" src="assets/images/star-trek.jpg" height="50" width="75"> Live Long and Prosper! <img class="throne" src="assets/images/star-trek.jpg" height="50" width="75"></footer>
+	
+	<!-- JQUERY Link -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Javascript Link -->
+	<script src="assets/javascript/app.js"></script>
 </body>
-
 </html>
