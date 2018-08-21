@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var topics = ["Captain Kirk", "Spock", "Bones", "Uhura", "Enterprise", "Captain Picard"]
-  const theme = new Audio("assets/got-theme-song.mp3");
+  const theme = new Audio("assets/startrektheme.mp3");
   var musicPlaying = false;
   var results;
   
